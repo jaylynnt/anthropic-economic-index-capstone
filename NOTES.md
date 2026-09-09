@@ -56,6 +56,31 @@ The inventory script in `src/inventory.py` examined the two June 2026 CSV files.
 ## Claimed vs. Actual:
 1. The paper also reported that roughly 36% of occupations showed AI use in at least 25% of their associated tasks. This cannot be directly verified from the inventory alone and will require additional analysis of the occupation- and task-level metrics.
 2. The paper stated that more than 4 million Claude conversations were analyzed. This number cannot be compared with the row counts in the June 2026 CSV files because the data is aggregated. Each row represents one metric value for a specific combination of geography and analysis category, rather than one individual conversation.
-3. The paper also reported that approximately 57% of interactions were classified as augmentation and 43% as automation. These values were not calculated during the inventory step because the inventory focused on file structure, row counts, columns, data types, and missing values. These percentages can be examined later during the analysis.
+3. The paper also reported that approximately 57% of interactions were classified as augmentation and 43% as automation. These values were not calculated during the inventory step because the inventory focused on file structure, row counts, columns, data types, and missing values. 
 
 Overall, the file structure and fields were consistent across both CSV files. The main difference between the original paper and the June 2026 release is that the paper discusses conversation-level analysis, while the June 2026 files contain aggregated metric rows.
+
+
+## Raw Record Examples:
+Claude.ai - 
+1. Nepal: O*NET task
+This row represents Claude.ai usage in Nepal for the ONET task “Recommend and provide advice on a wide variety of products and services.” The pct metric has a value of 1.75, meaning this task accounted for a small share of the relevant usage in that category. The fields appear consistent because the row is tied to a country, an ONET task, and a percentage metric.
+
+2. Global: Task iteration
+This row represents the global O*NET task “Recommend disposal of excess, defective, or obsolete stock.” The metric collaboration_task_iteration_pct has a value of 25.00, showing that 25% of the classified interactions for this task were associated with task iteration. This example shows that the dataset contains collaboration-style metrics in addition to general usage percentages.
+
+3. Poland: SOC occupation
+This row represents the occupation category “Building and Grounds Cleaning and Maintenance” in Poland. The metric artifact_explanation_or_answer_pct has a value of 9.52, meaning 9.52% of the relevant interactions were associated with an explanation-or-answer artifact type. This record is different from the O*NET task rows because it uses the soc_occupation category at hierarchy level 1.
+
+4. Dominican Republic: AI autonomy
+This row represents the O*NET category “Performing for or Working Directly with the Public” in the Dominican Republic. The metric ai_autonomy_mean has a value of 2.40, which is different from a percentage because it reports an average autonomy score rather than a share of usage. This shows that the value column has to be interpreted based on the metric_id.
+
+API Examples:
+5. Global: Estimated education requirement
+This row represents an O*NET task involving assessing client functioning levels and areas of need. The metric human_education_years_mean has a value of 12.48, which appears to represent the estimated average years of human education associated with the task. This is another example where the value field is not a percentage.
+
+6. Global: Automation
+This row represents the O*NET task involving determining response requirements and dispatching units based on established procedures. The metric collaboration_bucket_automation_pct has a value of 100.00, meaning all classified interactions for this task in this slice were categorized as automation. This is an interesting record because it shows a task with a completely automation-heavy interaction pattern.
+
+7. Global: Document or report artifact
+This row represents the O*NET task about determining formats, approaches, content, levels, and mediums to meet objectives within budget constraints. The metric artifact_document_or_report_pct has a value of 3.80, meaning 3.8% of the relevant API usage for this task was associated with a document-or-report artifact. The row is global because the first-party API dataset is reported at the global geographic level in this example.
