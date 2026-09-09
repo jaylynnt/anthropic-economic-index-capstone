@@ -46,3 +46,16 @@ The June 2026 release expanded the published classifications and metrics. The do
 3. Approximately 57% of interactions were augmentation, compared to 43% as automation.
 
 
+## Dataset Inventory:
+There were no missing values and both files contained the same 10 columnns.
+
+The inventory script in `src/inventory.py` examined the two June 2026 CSV files.
+- `aei_1p_api_2026-06-26.csv`: 73.70 MB, 491,705 rows, 10 columns
+- `aei_claude_ai_2026-06-26.csv`: 209.02 MB, 1,636,573 rows, 10 columns
+
+## Claimed vs. Actual:
+1. The paper also reported that roughly 36% of occupations showed AI use in at least 25% of their associated tasks. This cannot be directly verified from the inventory alone and will require additional analysis of the occupation- and task-level metrics.
+2. The paper stated that more than 4 million Claude conversations were analyzed. This number cannot be compared with the row counts in the June 2026 CSV files because the data is aggregated. Each row represents one metric value for a specific combination of geography and analysis category, rather than one individual conversation.
+3. The paper also reported that approximately 57% of interactions were classified as augmentation and 43% as automation. These values were not calculated during the inventory step because the inventory focused on file structure, row counts, columns, data types, and missing values. These percentages can be examined later during the analysis.
+
+Overall, the file structure and fields were consistent across both CSV files. The main difference between the original paper and the June 2026 release is that the paper discusses conversation-level analysis, while the June 2026 files contain aggregated metric rows.
